@@ -10,32 +10,46 @@ import android.content.Intent;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-    EditText nombre,telefono,correo;
+    public datos d = new datos();
+    EditText nombre,apellido,correo,color;
     TextView text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btnAceptar=(Button)findViewById(R.id.btnEnviar);
+        Button btnLimpiar=(Button)findViewById(R.id.btnLimpiar);
         nombre =(EditText)findViewById(R.id.edtNombre);
-        telefono=(EditText)findViewById(R.id.edtTelefono);
+        apellido=(EditText)findViewById(R.id.edtApellido);
         correo = (EditText)findViewById(R.id.edtCorreo);
+        color = (EditText)findViewById(R.id.edtColor);
         text = (TextView)findViewById(R.id.textView);
         String nombreM = "";
         Bundle extras = getIntent().getExtras();
         if(extras!=null) {
-            nombreM = extras.getString("MAYUS").toLowerCase();
-            text.setText(nombreM);
+            d = extras.getParcelable("datos");
+            text.setText(d.getNombre().toLowerCase()+" "+d.getApellido().toLowerCase()+" "+d.getCorreo().toLowerCase()+" "+d.getColor().toLowerCase());
         }
 
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                d.setNombre(nombre.getText().toString());
+                d.setApellido(apellido.getText().toString());
+                d.setCorreo(correo.getText().toString());
+                d.setColor(color.getText().toString());
                 Intent i = new Intent(getApplicationContext(), Main2Activity.class);
-                i.putExtra("NOMBRE",nombre.getText().toString());
-                i.putExtra("TELEFONO",telefono.getText().toString());
-                i.putExtra("CORREO",correo.getText().toString());
+                i.putExtra("datos",d);
                 startActivity(i);
+            }
+        });
+        btnLimpiar.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                nombre.setText("");
+                apellido.setText("");
+                correo.setText("");
+                color.setText("");
             }
         });
     }

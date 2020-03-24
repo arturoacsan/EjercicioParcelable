@@ -9,42 +9,65 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/edtNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="" />
+
         <EditText
-            android:layout_width="wrap_content"
+            android:id="@+id/edtApellido"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edtTelefono"
             android:ems="10"
-            android:inputType="phone"
+            android:inputType="textPersonName"
             android:text="" />
+
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/edtCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:text="" />
-        <Button
-            android:layout_width="wrap_content"
+
+        <EditText
+            android:id="@+id/edtColor"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnEnviar"
-            android:text="Enviar"/>
+            android:ems="10"
+            android:inputType="text"
+            android:text="" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnEnviar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enviar" />
+
+            <Button
+                android:id="@+id/btnLimpiar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Limpiar"></Button>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView" />
-
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

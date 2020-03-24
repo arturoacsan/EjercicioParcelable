@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Button;
 
 public class Main2Activity extends Activity {
+    public datos d = new datos();
     TextView txtNombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,16 +17,14 @@ public class Main2Activity extends Activity {
 
         Button btnRegresar = (Button) findViewById(R.id.btnRegresar);
         txtNombre = (TextView) findViewById(R.id.txtNombre);
-        Bundle extras = getIntent().getExtras();
-        String nombre = extras.getString("NOMBRE");
-        String telefono = extras.getString("TELEFONO");
-        String correo = extras.getString("CORREO");
-        txtNombre.setText(nombre.toUpperCase()+" "+telefono+" "+correo);
+        d = getIntent().getExtras().getParcelable("datos");
+
+        txtNombre.setText(d.getNombre().toUpperCase()+" "+d.getApellido().toUpperCase()+" "+d.getCorreo().toUpperCase()+" "+d.getColor().toUpperCase());
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i2 = new Intent(getApplicationContext(), MainActivity.class);
-                i2.putExtra("MAYUS",txtNombre.getText().toString());
+                i2.putExtra("datos",d);
                 startActivity(i2);
             }
         });
